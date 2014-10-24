@@ -1,0 +1,31 @@
+N = 100
+/home/garrett/dev/maximal_clique/data/TestData_Images_603_622
+
+Not Preprocessed
+
+e = 0.2
+Real   205ms
+User   115ms
+System 19ms
+
+e = 0.4
+Real   423ms
+User   328ms
+System 61ms
+
+e = 0.6
+Real   2230ms
+User   2232ms
+System 146ms
+
+e = 0.8
+Real   11364ms
+User   11195ms
+System 307ms
+
+e = 1.0
+Real   26251ms
+User   25289ms
+System 242ms
+
+e = 1.2

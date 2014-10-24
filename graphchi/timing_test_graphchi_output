@@ -1,0 +1,217 @@
+/home/garrett/dev/maximal_clique/data/TestData_Images_603_622
+
+Not Preprocessed
+
+e = 0.2
+Real   209ms
+User   114ms
+System 19ms
+
+e = 0.4
+Real   423ms
+User   334ms
+System 61ms
+
+e = 0.6
+Real   1749ms
+User   2233ms
+System 130ms
+
+e = 0.8
+Real   9366ms
+User   10596ms
+System 260ms
+
+e = 1.0
+Real   22147ms
+User   23707ms
+System 182ms
+
+e = 1.2
+Real   12913ms
+User   13573ms
+System 554ms
+
+e = 1.4
+Real   12232ms
+User   12563ms
+System 604ms
+
+e = 1.6
+Real   5941ms
+User   6164ms
+System 591ms
+
+e = 1.8
+Real   1800ms
+User   1647ms
+System 543ms
+
+e = 2.0
+Real   763ms
+User   872ms
+System 69ms
+
+e = 2.2
+Real   1591ms
+User   1198ms
+System 556ms
+
+e = 2.4
+Real   1505ms
+User   1242ms
+System 565ms
+
+e = 2.6
+Real   1493ms
+User   1267ms
+System 557ms
+
+e = 2.8
+Real   1520ms
+User   1188ms
+System 559ms
+
+e = 3.0
+Real   890ms
+User   897ms
+System 70ms
+
+e = 3.2
+Real   1640ms
+User   1148ms
+System 561ms
+
+e = 3.4
+Real   1539ms
+User   1206ms
+System 561ms
+
+e = 3.6
+Real   1516ms
+User   1234ms
+System 564ms
+
+e = 3.8
+Real   1552ms
+User   1228ms
+System 567ms
+
+e = 4.0
+Real   899ms
+User   902ms
+System 69ms
+
+e = 4.2
+Real   1589ms
+User   1197ms
+System 563ms
+
+/home/garrett/dev/maximal_clique/data/TestData_Images_641_692
+
+Not Preprocessed
+
+e = 0.2
+Real   135ms
+User   41ms
+System 7ms
+
+e = 0.4
+Real   268ms
+User   194ms
+System 33ms
+
+e = 0.6
+Real   1733ms
+User   2136ms
+System 126ms
+
+e = 0.8
+Real   6968ms
+User   8300ms
+System 242ms
+
+e = 1.0
+Real   10732ms
+User   12404ms
+System 136ms
+
+e = 1.2
+Real   7147ms
+User   7924ms
+System 398ms
+
+e = 1.4
+Real   12384ms
+User   13260ms
+System 554ms
+
+e = 1.6
+Real   15525ms
+User   16340ms
+System 641ms
+
+e = 1.8
+Real   16802ms
+User   17384ms
+System 715ms
+
+e = 2.0
+Real   1947ms
+User   2732ms
+System 112ms
+
+e = 2.2
+Real   2156ms
+User   1377ms
+System 562ms
+
+e = 2.4
+Real   1720ms
+User   1207ms
+System 567ms
+
+e = 2.6
+Real   1848ms
+User   1208ms
+System 565ms
+
+e = 2.8
+Real   1811ms
+User   1214ms
+System 569ms
+
+e = 3.0
+Real   681ms
+User   873ms
+System 76ms
+
+e = 3.2
+Real   1678ms
+User   1036ms
+System 564ms
+
+e = 3.4
+Real   1664ms
+User   1157ms
+System 564ms
+
+e = 3.6
+Real   1655ms
+User   1179ms
+System 563ms
+
+e = 3.8
+Real   1572ms
+User   1256ms
+System 567ms
+
+e = 4.0
+Real   668ms
+User   868ms
+System 75ms
+
+e = 4.2
+Real   1756ms
+User   1078ms
+System 558ms

@@ -1,0 +1,192 @@
+/home/garrett/dev/nearness/data/objectDescriptions
+0.1
+612:'main' epsilon = 0.1
+613:'main' num_features = 18
+614:'main' output = output_bulk_e0.1
+615:'main' num_threads = 4
+616:'main' distance_measure = mce
+289:'run_mce' Read Objects
+292:'run_mce' objects.size() = 1000
+296:'run_mce' Calculate Partial Graphs
+318:'run_mce' Parallel Mode
+332:'run_mce' All tasks scheduled
+1e+02% [==================================================]
+339:'run_mce' Output
+	Command being timed: "/home/garrett/dev/nearness/recursive/bin/nearness -d mce -e 0.1 -f 18 -o output_bulk_e0.1 /home/garrett/dev/nearness/data/objectDescriptions"
+	User time (seconds): 1304.90
+	System time (seconds): 1.24
+	Percent of CPU this job got: 390%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 5:34.40
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 36932
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 10359
+	Voluntary context switches: 48
+	Involuntary context switches: 204281
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 22208
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+
+Saved to output_bulk_e0.1
+0.2
+612:'main' epsilon = 0.2
+613:'main' num_features = 18
+614:'main' output = output_bulk_e0.2
+615:'main' num_threads = 4
+616:'main' distance_measure = mce
+289:'run_mce' Read Objects
+292:'run_mce' objects.size() = 1000
+296:'run_mce' Calculate Partial Graphs
+318:'run_mce' Parallel Mode
+332:'run_mce' All tasks scheduled
+1e+02% [==================================================]
+339:'run_mce' Output
+	Command being timed: "/home/garrett/dev/nearness/recursive/bin/nearness -d mce -e 0.2 -f 18 -o output_bulk_e0.2 /home/garrett/dev/nearness/data/objectDescriptions"
+	User time (seconds): 2532.56
+	System time (seconds): 1.47
+	Percent of CPU this job got: 392%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 10:46.30
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 36940
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 10374
+	Voluntary context switches: 43
+	Involuntary context switches: 316657
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 29104
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+
+Saved to output_bulk_e0.2
+0.3
+612:'main' epsilon = 0.3
+613:'main' num_features = 18
+614:'main' output = output_bulk_e0.3
+615:'main' num_threads = 4
+616:'main' distance_measure = mce
+289:'run_mce' Read Objects
+292:'run_mce' objects.size() = 1000
+296:'run_mce' Calculate Partial Graphs
+318:'run_mce' Parallel Mode
+332:'run_mce' All tasks scheduled
+1e+02% [==================================================]
+339:'run_mce' Output
+	Command being timed: "/home/garrett/dev/nearness/recursive/bin/nearness -d mce -e 0.3 -f 18 -o output_bulk_e0.3 /home/garrett/dev/nearness/data/objectDescriptions"
+	User time (seconds): 9348.54
+	System time (seconds): 3.99
+	Percent of CPU this job got: 393%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 39:38.29
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 36940
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 10394
+	Voluntary context switches: 42
+	Involuntary context switches: 958844
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 32176
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+
+Saved to output_bulk_e0.3
+0.4
+612:'main' epsilon = 0.4
+613:'main' num_features = 18
+614:'main' output = output_bulk_e0.4
+615:'main' num_threads = 4
+616:'main' distance_measure = mce
+289:'run_mce' Read Objects
+292:'run_mce' objects.size() = 1000
+296:'run_mce' Calculate Partial Graphs
+318:'run_mce' Parallel Mode
+332:'run_mce' All tasks scheduled
+1e+02% [==================================================]
+339:'run_mce' Output
+	Command being timed: "/home/garrett/dev/nearness/recursive/bin/nearness -d mce -e 0.4 -f 18 -o output_bulk_e0.4 /home/garrett/dev/nearness/data/objectDescriptions"
+	User time (seconds): 36156.21
+	System time (seconds): 11.77
+	Percent of CPU this job got: 392%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:33:45
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 37056
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 10418
+	Voluntary context switches: 38
+	Involuntary context switches: 3492572
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 32840
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+
+Saved to output_bulk_e0.4
+0.5
+612:'main' epsilon = 0.5
+613:'main' num_features = 18
+614:'main' output = output_bulk_e0.5
+615:'main' num_threads = 4
+616:'main' distance_measure = mce
+289:'run_mce' Read Objects
+292:'run_mce' objects.size() = 1000
+296:'run_mce' Calculate Partial Graphs
+318:'run_mce' Parallel Mode
+332:'run_mce' All tasks scheduled
+1e+02% [==================================================]
+339:'run_mce' Output
+	Command being timed: "/home/garrett/dev/nearness/recursive/bin/nearness -d mce -e 0.5 -f 18 -o output_bulk_e0.5 /home/garrett/dev/nearness/data/objectDescriptions"
+	User time (seconds): 128802.82
+	System time (seconds): 38.13
+	Percent of CPU this job got: 393%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 9:05:42
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 37040
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 10430
+	Voluntary context switches: 37
+	Involuntary context switches: 12250998
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 32840
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+
+Saved to output_bulk_e0.5
+

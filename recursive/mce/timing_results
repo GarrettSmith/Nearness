@@ -1,0 +1,210 @@
+394:'run' Output
+	Command being timed: "./bin/nearness -e 0.6 -f 18 -o outpute06 ../data/objectDescriptions/"
+	User time (seconds): 623680.43
+	System time (seconds): 977.37
+	Percent of CPU this job got: 191%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 90:34:23
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 32620
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1321
+	Minor (reclaiming a frame) page faults: 16905
+	Voluntary context switches: 1640
+	Involuntary context switches: 102550002
+	Swaps: 0
+	File system inputs: 73040
+	File system outputs: 32888
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+
+.1
+505:'main' epsilon = 0.1
+506:'main' num_features = 18
+507:'main' output = output_bulk_e0.1
+508:'main' num_threads = 2
+338:'run' Read Objects
+341:'run' objects.size() = 1000
+345:'run' Calculate Partial Graphs
+367:'run' Parallel Mode
+387:'run' All tasks scheduled
+1e+02% [==================================================]
+394:'run' Output
+	Command being timed: "/home/garrett/dev/maximal_clique/recursive/bin/nearness -e 0.1 -f 18 -o output_bulk_e0.1 /home/garrett/dev/maximal_clique/data/objectDescriptions"
+	User time (seconds): 1674.88
+	System time (seconds): 7.07
+	Percent of CPU this job got: 183%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 15:15.85
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 36796
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 11
+	Minor (reclaiming a frame) page faults: 10296
+	Voluntary context switches: 2516
+	Involuntary context switches: 788801
+	Swaps: 0
+	File system inputs: 147616
+	File system outputs: 22208
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+
+Saved to output_bulk_e0.1
+0.2
+505:'main' epsilon = 0.2
+506:'main' num_features = 18
+507:'main' output = output_bulk_e0.2
+508:'main' num_threads = 2
+338:'run' Read Objects
+341:'run' objects.size() = 1000
+345:'run' Calculate Partial Graphs
+367:'run' Parallel Mode
+387:'run' All tasks scheduled
+1e+02% [==================================================]
+394:'run' Output
+	Command being timed: "/home/garrett/dev/maximal_clique/recursive/bin/nearness -e 0.2 -f 18 -o output_bulk_e0.2 /home/garrett/dev/maximal_clique/data/objectDescriptions"
+	User time (seconds): 3064.40
+	System time (seconds): 10.68
+	Percent of CPU this job got: 185%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 27:35.22
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 36804
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 10312
+	Voluntary context switches: 47
+	Involuntary context switches: 1248035
+	Swaps: 0
+	File system inputs: 192
+	File system outputs: 29104
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+
+Saved to output_bulk_e0.2
+0.3
+505:'main' epsilon = 0.3
+506:'main' num_features = 18
+507:'main' output = output_bulk_e0.3
+508:'main' num_threads = 2
+338:'run' Read Objects
+341:'run' objects.size() = 1000
+345:'run' Calculate Partial Graphs
+367:'run' Parallel Mode
+387:'run' All tasks scheduled
+1e+02% [==================================================]
+394:'run' Output
+	Command being timed: "/home/garrett/dev/maximal_clique/recursive/bin/nearness -e 0.3 -f 18 -o output_bulk_e0.3 /home/garrett/dev/maximal_clique/data/objectDescriptions"
+	User time (seconds): 10923.11
+	System time (seconds): 29.65
+	Percent of CPU this job got: 186%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:37:38
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 36588
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 6
+	Minor (reclaiming a frame) page faults: 10342
+	Voluntary context switches: 74
+	Involuntary context switches: 3754445
+	Swaps: 0
+	File system inputs: 488
+	File system outputs: 32176
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+
+Saved to output_bulk_e0.3
+0.4
+505:'main' epsilon = 0.4
+506:'main' num_features = 18
+507:'main' output = output_bulk_e0.4
+508:'main' num_threads = 2
+338:'run' Read Objects
+341:'run' objects.size() = 1000
+345:'run' Calculate Partial Graphs
+367:'run' Parallel Mode
+387:'run' All tasks scheduled
+1e+02% [==================================================]
+394:'run' Output
+	Command being timed: "/home/garrett/dev/maximal_clique/recursive/bin/nearness -e 0.4 -f 18 -o output_bulk_e0.4 /home/garrett/dev/maximal_clique/data/objectDescriptions"
+	User time (seconds): 41827.57
+	System time (seconds): 35.14
+	Percent of CPU this job got: 198%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 5:51:09
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 36896
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 2
+	Minor (reclaiming a frame) page faults: 10332
+	Voluntary context switches: 2411
+	Involuntary context switches: 3221170
+	Swaps: 0
+	File system inputs: 144384
+	File system outputs: 32840
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+
+Saved to output_bulk_e0.4
+0.5
+505:'main' epsilon = 0.5
+506:'main' num_features = 18
+507:'main' output = output_bulk_e0.5
+508:'main' num_threads = 2
+338:'run' Read Objects
+341:'run' objects.size() = 1000
+345:'run' Calculate Partial Graphs
+367:'run' Parallel Mode
+387:'run' All tasks scheduled
+1e+02% [==================================================]
+394:'run' Output
+	Command being timed: "/home/garrett/dev/maximal_clique/recursive/bin/nearness -e 0.5 -f 18 -o output_bulk_e0.5 /home/garrett/dev/maximal_clique/data/objectDescriptions"
+	User time (seconds): 149228.14
+	System time (seconds): 237.75
+	Percent of CPU this job got: 189%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 21:54:19
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 33200
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 391
+	Minor (reclaiming a frame) page faults: 11436
+	Voluntary context switches: 512
+	Involuntary context switches: 24510427
+	Swaps: 0
+	File system inputs: 18344
+	File system outputs: 32840
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+
+Saved to output_bulk_e0.5

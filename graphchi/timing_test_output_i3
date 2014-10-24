@@ -1,0 +1,215 @@
+N = 100
+/home/garrett/dev/maximal_clique/data/TestData_Images_603_622
+
+e = 0.2
+Real   18ms
+User   12ms
+System 2ms
+
+e = 0.4
+Real   39ms
+User   32ms
+System 4ms
+
+e = 0.6
+Real   126ms
+User   116ms
+System 6ms
+
+e = 0.8
+Real   1425ms
+User   1363ms
+System 56ms
+
+e = 1.0
+Real   15586ms
+User   9622ms
+System 895ms
+
+e = 1.2
+Real   2297ms
+User   1978ms
+System 262ms
+
+e = 1.4
+Real   1959ms
+User   1674ms
+System 210ms
+
+e = 1.6
+Real   540ms
+User   481ms
+System 40ms
+
+e = 1.8
+Real   117ms
+User   89ms
+System 8ms
+
+e = 2.0
+Real   43ms
+User   36ms
+System 3ms
+
+e = 2.2
+Real   31ms
+User   26ms
+System 1ms
+
+e = 2.4
+Real   27ms
+User   22ms
+System 2ms
+
+e = 2.6
+Real   28ms
+User   21ms
+System 2ms
+
+e = 2.8
+Real   25ms
+User   20ms
+System 1ms
+
+e = 3.0
+Real   26ms
+User   20ms
+System 2ms
+
+e = 3.2
+Real   27ms
+User   22ms
+System 1ms
+
+e = 3.4
+Real   26ms
+User   21ms
+System 2ms
+
+e = 3.6
+Real   27ms
+User   21ms
+System 1ms
+
+e = 3.8
+Real   27ms
+User   21ms
+System 2ms
+
+e = 4.0
+Real   27ms
+User   22ms
+System 2ms
+
+e = 4.2
+Real   27ms
+User   21ms
+System 2ms
+
+/home/garrett/dev/maximal_clique/data/TestData_Images_641_692
+
+e = 0.2
+Real   16ms
+User   9ms
+System 3ms
+
+e = 0.4
+Real   44ms
+User   35ms
+System 5ms
+
+e = 0.6
+Real   206ms
+User   182ms
+System 19ms
+
+e = 0.8
+Real   1231ms
+User   1160ms
+System 61ms
+
+e = 1.0
+Real   1374ms
+User   1293ms
+System 65ms
+
+e = 1.2
+Real   794ms
+User   717ms
+System 63ms
+
+e = 1.4
+Real   2185ms
+User   1851ms
+System 300ms
+
+e = 1.6
+Real   8294ms
+User   7089ms
+System 1008ms
+
+e = 1.8
+Real   8034ms
+User   6728ms
+System 1045ms
+
+e = 2.0
+Real   207ms
+User   170ms
+System 15ms
+
+e = 2.2
+Real   63ms
+User   54ms
+System 5ms
+
+e = 2.4
+Real   35ms
+User   29ms
+System 2ms
+
+e = 2.6
+Real   28ms
+User   22ms
+System 2ms
+
+e = 2.8
+Real   31ms
+User   26ms
+System 1ms
+
+e = 3.0
+Real   29ms
+User   24ms
+System 2ms
+
+e = 3.2
+Real   29ms
+User   24ms
+System 2ms
+
+e = 3.4
+Real   30ms
+User   24ms
+System 2ms
+
+e = 3.6
+Real   30ms
+User   24ms
+System 2ms
+
+e = 3.8
+Real   32ms
+User   25ms
+System 2ms
+
+e = 4.0
+Real   31ms
+User   24ms
+System 2ms
+
+e = 4.2
+Real   31ms
+User   25ms
+System 1ms
+

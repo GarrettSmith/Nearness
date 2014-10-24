@@ -1,0 +1,215 @@
+N = 100
+/home/garrett/dev/maximal_clique/data/TestData_Images_603_622
+
+e = 0.2
+Real   11ms
+User   6ms
+System 1ms
+
+e = 0.4
+Real   28ms
+User   20ms
+System 3ms
+
+e = 0.6
+Real   92ms
+User   73ms
+System 5ms
+
+e = 0.8
+Real   1005ms
+User   925ms
+System 46ms
+
+e = 1.0
+Real   7397ms
+User   6417ms
+System 718ms
+
+e = 1.2
+Real   1591ms
+User   1230ms
+System 206ms
+
+e = 1.4
+Real   1285ms
+User   1020ms
+System 161ms
+
+e = 1.6
+Real   334ms
+User   283ms
+System 30ms
+
+e = 1.8
+Real   59ms
+User   48ms
+System 5ms
+
+e = 2.0
+Real   22ms
+User   17ms
+System 2ms
+
+e = 2.2
+Real   14ms
+User   10ms
+System 1ms
+
+e = 2.4
+Real   13ms
+User   6ms
+System 1ms
+
+e = 2.6
+Real   11ms
+User   7ms
+System 0ms
+
+e = 2.8
+Real   11ms
+User   7ms
+System 1ms
+
+e = 3.0
+Real   11ms
+User   7ms
+System 0ms
+
+e = 3.2
+Real   11ms
+User   7ms
+System 0ms
+
+e = 3.4
+Real   11ms
+User   7ms
+System 0ms
+
+e = 3.6
+Real   11ms
+User   6ms
+System 1ms
+
+e = 3.8
+Real   12ms
+User   7ms
+System 0ms
+
+e = 4.0
+Real   11ms
+User   7ms
+System 0ms
+
+e = 4.2
+Real   12ms
+User   7ms
+System 0ms
+
+/home/garrett/dev/maximal_clique/data/TestData_Images_641_692
+
+e = 0.2
+Real   8ms
+User   2ms
+System 1ms
+
+e = 0.4
+Real   23ms
+User   16ms
+System 3ms
+
+e = 0.6
+Real   125ms
+User   106ms
+System 13ms
+
+e = 0.8
+Real   804ms
+User   735ms
+System 43ms
+
+e = 1.0
+Real   876ms
+User   807ms
+System 46ms
+
+e = 1.2
+Real   493ms
+User   426ms
+System 44ms
+
+e = 1.4
+Real   1393ms
+User   1103ms
+System 202ms
+
+e = 1.6
+Real   5800ms
+User   4166ms
+System 723ms
+
+e = 1.8
+Real   5444ms
+User   3857ms
+System 750ms
+
+e = 2.0
+Real   146ms
+User   98ms
+System 14ms
+
+e = 2.2
+Real   43ms
+User   25ms
+System 3ms
+
+e = 2.4
+Real   17ms
+User   10ms
+System 1ms
+
+e = 2.6
+Real   14ms
+User   7ms
+System 1ms
+
+e = 2.8
+Real   12ms
+User   6ms
+System 1ms
+
+e = 3.0
+Real   12ms
+User   6ms
+System 1ms
+
+e = 3.2
+Real   12ms
+User   7ms
+System 0ms
+
+e = 3.4
+Real   12ms
+User   7ms
+System 0ms
+
+e = 3.6
+Real   12ms
+User   7ms
+System 0ms
+
+e = 3.8
+Real   12ms
+User   6ms
+System 1ms
+
+e = 4.0
+Real   14ms
+User   7ms
+System 0ms
+
+e = 4.2
+Real   12ms
+User   6ms
+System 1ms
+

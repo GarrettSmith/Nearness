@@ -1,0 +1,153 @@
+/home/garrett/dev/maximal_clique/data/TestData_Images_603_622
+
+Not Preprocessed
+
+e = 0.2
+Real   184ms
+User   116ms
+System 24ms
+
+e = 0.4
+Real   337ms
+User   332ms
+System 48ms
+
+e = 0.6
+Real   1964ms
+User   2300ms
+System 136ms
+
+e = 0.8
+Real   9732ms
+User   10749ms
+System 268ms
+
+e = 1.0
+Real   22724ms
+User   23985ms
+System 204ms
+
+e = 1.2
+Real   12999ms
+User   13593ms
+System 568ms
+
+e = 1.4
+Real   12908ms
+User   12565ms
+System 644ms
+
+e = 1.6
+Real   7756ms
+User   6184ms
+System 644ms
+
+e = 1.8
+Real   2011ms
+User   1676ms
+System 512ms
+
+e = 2.0
+Real   4874ms
+User   1184ms
+System 528ms
+
+e = 2.2
+Real   3627ms
+User   1176ms
+System 564ms
+
+e = 2.4
+Real   4498ms
+User   1432ms
+System 404ms
+
+e = 2.6
+Real   15481ms
+User   1452ms
+System 388ms
+
+e = 2.8
+Real   10013ms
+User   1488ms
+System 360ms
+
+e = 3.0
+Real   6305ms
+User   1316ms
+System 516ms
+
+e = 3.2
+Real   6807ms
+User   1352ms
+System 524ms
+
+e = 3.4
+Real   16158ms
+User   1492ms
+System 364ms
+
+e = 3.6
+Real   3122ms
+User   1312ms
+System 532ms
+
+e = 3.8
+Real   10879ms
+User   1460ms
+System 448ms
+
+e = 4.0
+Real   9855ms
+User   1360ms
+System 456ms
+
+e = 4.2
+Real   9064ms
+User   1436ms
+System 448ms
+
+Preprocessing
+
+Preprocessed
+
+/home/garrett/dev/maximal_clique/data/TestData_Images_641_692
+
+Not Preprocessed
+
+e = 0.2
+Real   320ms
+User   48ms
+System 0ms
+
+e = 0.4
+Real   293ms
+User   188ms
+System 32ms
+
+e = 0.6
+Real   1464ms
+User   2140ms
+System 128ms
+
+e = 0.8
+Real   7207ms
+User   8313ms
+System 256ms
+
+e = 1.0
+Real   11716ms
+User   12693ms
+System 388ms
+
+e = 1.2
+Real   7890ms
+User   7964ms
+System 352ms
+
+e = 1.4
+Real   14004ms
+User   13305ms
+System 504ms
+
+e = 1.6

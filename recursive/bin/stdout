@@ -1,0 +1,10 @@
+704:'main' epsilon = 0.1
+705:'main' num_features = 18
+706:'main' output = output
+707:'main' num_threads = 1
+708:'main' distance_measure = sgmd
+526:'run_sgmd' Read Objects
+529:'run_sgmd' objects.size() = 1000
+537:'run_sgmd' Calculate Partial Graphs
+543:'run_sgmd' Count Subsets Size
+558:'run_sgmd' Serial Mode

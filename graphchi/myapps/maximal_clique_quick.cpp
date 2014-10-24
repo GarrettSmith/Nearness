@@ -1,0 +1,566 @@
+
+/**
+ * @file	maximal_clique.cpp
+ * @author  Garrett Smith <garrettwhsmith@gmail.com>
+ * @version 1.0
+ *
+ * @section LICENSE
+ *
+ * Copyright [2013] [Garrett Smith, Christopher Henry / The University of Winnipeg]
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permline_streamions and
+ * limitations under the License.
+
+ *
+ * @section DESCRIPTION
+ *
+ * Template for GraphChi applications. To create a new application, duplicate
+ * this template.
+ */
+
+#include <string>
+#include <bitset>
+#include <iostream>
+#include <vector>
+#include <mutex>
+#include <assert.h>
+#include <map>
+
+#include <fstream>
+
+#include "graphchi_basic_includes.hpp"
+
+// input converter
+//#include "converter.hpp"
+
+using namespace graphchi;
+
+const static size_t MAX_VERTICES = 512;
+const static vid_t NONE = -1;
+
+// argument set if singletons are allowed
+bool singletons;
+
+typedef std::bitset<MAX_VERTICES> IdSet;
+
+/**
+ * The data structure of a vertex.
+ *
+ */
+struct VertexData {
+	IdSet _neighbours;
+	bool _neighbours_set;
+
+	VertexData(IdSet ids) : _neighbours_set(false) {}
+
+	void set_neighbours(IdSet ids) {
+		_neighbours = ids;
+		_neighbours_set = true;
+	}
+};
+
+/**
+ * A message contains the current path taken to find the clique and the
+ * candidates that can still be considered.
+ */
+struct Message {
+	bool _set;
+	IdSet _current_clique;
+	IdSet _candidates;
+
+	Message() : _set(false) {}
+
+	void set(IdSet clique, IdSet cands) {
+		_set = true;
+		_current_clique = clique;
+		_candidates = cands;
+	}
+
+	void unset() {
+		_set = false;
+	}
+};
+
+/**
+ * The data structure of an edge.
+ * Provides the neighbours of the node and an optional message to find cliques.
+ */
+struct EdgeData {
+	IdSet _neighbours;
+	Message _message;
+
+	EdgeData(IdSet ids) :_neighbours(ids) {}
+	EdgeData() : _neighbours() {}
+
+};
+
+// Stores the found cliques
+std::vector<IdSet> results;
+std::mutex results_mutex;
+
+/**
+ * Type definitions. Remember to create suitable graph shards using the
+ * Sharder-program.
+ */
+typedef VertexData VertexDataType;
+typedef EdgeData EdgeDataType;
+typedef graphchi_vertex<VertexDataType, EdgeDataType> Vertex;
+
+// Pretty print bitsets
+std::string clique_to_string(IdSet clique) {
+	std::stringstream ss;
+	bool first = true;
+	for (size_t i = 0; i < clique.size(); i++) {
+		if (clique[i]) {
+			if (!first) ss << '\t';
+			ss << i;
+			first = false;
+		}
+	}
+	return ss.str();
+}
+
+/**
+ * GraphChi programs need to subclass GraphChiProgram<vertex-type, edge-type>
+ * class. The main logic is usually in the update function.
+ */
+struct MyGraphChiProgram : public GraphChiProgram<VertexDataType, EdgeDataType> {
+
+
+	vid_t next_start;
+	vid_t current_start;
+	IdSet next_start_neighbours;
+	std::mutex start_mutex;
+
+	IdSet start_set;
+
+	/**
+	 *  Vertex update function.
+	 */
+	void update(Vertex &vertex, graphchi_context &gcontext) {
+		//std::cout << "Update " << vertex.id() << ' ';
+
+		if (gcontext.iteration == 0) {
+			// This is the first iteration setup
+			//std::cout << "Initializing\n";
+			bool has_neighbours = initialize(vertex);
+			if (has_neighbours) check_start(vertex);
+
+		}
+		else if (current_start == vertex.id()) {
+			// This is the current start point
+			//std::cout << "Starting\n";
+			start(vertex, gcontext.scheduler);
+
+		}
+		// if no messages are found check for start point
+		else if (!handle_messages(vertex, gcontext.scheduler)) {
+			// This vertex may be a start point
+			//std::cout << "Check start\n";
+			check_start(vertex);
+		}
+	}
+
+	/**
+	 * Initialize the edges of the given vertex.
+	 * Returns true if this vertex has neighbours.
+	 * @param vertex [description]
+	 */
+	bool initialize(Vertex vertex) {
+		bool has_neighbours = (vertex.num_edges() > 0);
+		// check if this vertex has neighbours
+		if (has_neighbours) {
+			IdSet neighbours = get_neighbours(vertex);
+			VertexData data = vertex.get_data();
+			data.set_neighbours(neighbours);
+			vertex.set_data(data);
+
+			// write neighbours to inedges
+			for (int i = 0; i < vertex.num_inedges(); i++) {
+				graphchi_edge<EdgeData>* edge = vertex.inedge(i);
+				edge->set_data(EdgeData(neighbours));
+			}
+		}
+		else {
+			// Mark not to start from this vertex if it is its only neighbour
+			// std::cout << "No neighbours " << vertex.id() << std::endl;
+			start_mutex.lock();
+			start_set.set(vertex.id());
+			start_mutex.unlock();
+			// record if singletons are allowed
+			if (singletons) {
+				IdSet clique;
+				clique.set(vertex.id());
+				results_mutex.lock();
+				results.push_back(clique);
+				results_mutex.unlock();
+			}
+		}
+		// debug
+		//std::cout << vertex.vertexid << " - " << neighbours << '\n';
+		return has_neighbours;
+	}
+
+	/**
+	 * Get all the neighbours of the given vertex.
+	 * @param  vertex [description]
+	 * @return        [description]
+	 */
+	IdSet get_neighbours(Vertex vertex) {
+		// first check if we have already found the neighbours
+		VertexData data = vertex.get_data();
+		if (data._neighbours_set) {
+			return data._neighbours;
+		}
+		else {
+			// find all the neighbours of this vertex
+			IdSet neighbours;
+			for (int i = 0; i < vertex.num_outedges(); i++) {
+				graphchi_edge<EdgeData>* edge = vertex.outedge(i);
+				neighbours.set(edge->vertex_id());
+			}
+			return neighbours;
+		}
+	}
+
+	void start(Vertex vertex, ischeduler * scheduler) {
+		IdSet empty_clique;
+		IdSet candidates = get_neighbours(vertex);
+		clique_enumerate(vertex, empty_clique, candidates, scheduler);
+	}
+
+	// TODO decompose this
+	bool clique_enumerate(Vertex vertex, IdSet clique, IdSet cands,
+		ischeduler * scheduler) {
+
+		clique.set(vertex.id());
+
+		bool handled = false;
+
+		// if there are no more candidate verexs this is the final clique
+		if (cands.none()) {
+			// 	prevent this from causing segfaults
+			results_mutex.lock();
+			//DEBUG
+			// std::cout << "Clique " << vertex.id() << std::endl;
+			results.push_back(clique);
+			results_mutex.unlock();
+			handled = true;
+		}
+		else {
+			std::map<int, IdSet> dest_map;
+			IdSet orig_cands = cands;
+
+			// distribute amongst candidates
+			while(cands.any()) {
+				vid_t next_vertex = NONE;
+				graphchi_edge<EdgeData> * next_edge;
+				IdSet next_candidates;
+				int next_index;
+
+				for (int i = 0; i < vertex.num_outedges(); i++) {
+					graphchi_edge<EdgeData> * outedge = vertex.outedge(i);
+					EdgeData edge = outedge->get_data();
+					// check if this is to a candidate vertex
+					if (cands[outedge->vertexid]) {
+						IdSet neighbours = edge._neighbours;
+						IdSet intersection = orig_cands & neighbours;
+						if (next_vertex == NONE ||
+								intersection.count() > next_candidates.count()) {
+							next_vertex = outedge->vertexid;
+							next_edge = outedge;
+							next_candidates = intersection;
+							next_index = i;
+						}
+					}
+				}
+
+				// check if message is already set
+				EdgeData data = next_edge->get_data();
+				if (data._message._set) {
+					// DEBUG
+					// std::cout << "Collision " << vertex.id()
+					// 	<< " -> " << next_vertex << std::endl;
+					// if it is return that we could not complete
+					return false;
+				}
+				else {
+					// add to map
+					dest_map[next_index] = next_candidates;
+					// remove used candidates
+					cands.reset(next_vertex);
+					cands &= ~next_candidates;
+				}
+
+				// debug
+				if (vertex.id() == 279) {
+					std::cout << "279 : \n\tnext_vertex = "
+						<< next_vertex << std::endl
+						<< "\torig_cands = " << clique_to_string(orig_cands) << std::endl
+						<< "\tnext_cands = " << clique_to_string(next_candidates) << std::endl
+						<< "\tcands      = " << clique_to_string(cands) << std::endl;
+				}
+			}
+
+			// send out messages once we found all destinations can accept one
+			for (std::map<int, IdSet>::iterator it = dest_map.begin(); it != dest_map.end(); ++it) {
+
+			    // get the proper edge
+				graphchi_edge<EdgeData> * next_edge = vertex.outedge(it->first);
+
+				//DEBUG
+			    // std::cout << next_edge->vertex_id() << " => "
+			    // 	<< clique_to_string(it->second) << std::endl;
+
+				// schedule
+				scheduler->add_task(next_edge->vertex_id());
+
+				// DEBUG
+				// std::cout << vertex.id() << " -> "
+				// 	<< next_edge->vertex_id() << std::endl;
+
+				// set message
+				EdgeData data = next_edge->get_data();
+				data._message.set(clique, it->second);
+				next_edge->set_data(data);
+			}
+			handled = true;
+		}
+		return handled;
+	}
+
+	bool handle_messages(Vertex vertex, ischeduler * scheduler) {
+		bool found = false;
+		bool collision = false;
+		// read the message from each in edge
+		for (int i = 0; i < vertex.num_inedges(); i++) {
+			graphchi_edge<EdgeData>* edge = vertex.inedge(i);
+			EdgeDataType data = edge->get_data();
+			Message msg = data._message;
+			// If the message is valid
+			if (msg._set) {
+				IdSet clique = msg._current_clique;
+				IdSet candidates = msg._candidates;
+				bool success = clique_enumerate(vertex, clique, candidates, scheduler);
+				// only unset the message if we were able to forward it
+				if (success) {
+					data._message.unset();
+					edge->set_data(data);
+				}
+				else {
+					collision = true;
+				}
+				found = true;
+			}
+		}
+		// scheduling
+		if (collision) {
+			// reschedule on failure
+			scheduler->add_task(vertex.id());
+		}
+		else {
+			// prevent over scheduling
+			scheduler->remove_tasks(vertex.id(), vertex.id());
+		}
+		return found;
+	}
+
+	void check_start(Vertex vertex) {
+
+//		std::cout << "vertex: " << vertex.id() << '\n'
+//				<< "next_start = " << next_start << '\n'
+//				<< "vertex.num_outedges() = " << vertex.num_outedges() << '\n'
+//				<< "next_start_neighbours.count() = " << next_start_neighbours.count() << '\n';
+		// TODO is the mutex needed?
+		start_mutex.lock();
+		if (start_set[vertex.id()]) {
+			std::cout << "check_start failed vertex id = "
+				<< vertex.id() << std::endl;
+			for (int i = 0; i < vertex.num_inedges(); i++) {
+				graphchi_edge<EdgeData>* edge = vertex.inedge(i);
+				std::cout << "message from "<< edge->vertex_id() << " = "
+						<< edge->get_data()._message._set << std::endl;
+			}
+			assert(false); // Something has gone wrong
+		}
+		if ( next_start == NONE ||
+				(size_t)(vertex.num_outedges()) > next_start_neighbours.count()) {
+			next_start = vertex.id();
+			next_start_neighbours = get_neighbours(vertex);
+		}
+		start_mutex.unlock();
+	}
+
+	/**
+	 * Called before an iteration starts.
+	 */
+	void before_iteration(int iteration, graphchi_context &gcontext) {
+		std::cout << "\nIteration = " << iteration << std::endl;
+		if (iteration == 0) {
+			// ensure there are not more vertices than the max size
+			assert(gcontext.nvertices<MAX_VERTICES);
+		}
+		next_start = NONE;
+		next_start_neighbours.reset();
+	}
+
+	/**
+	 * Called after an iteration has finished.
+	 */
+	void after_iteration(int iteration, graphchi_context &gcontext) {
+		// if a new start point was found
+		if (next_start != NONE) {
+			std::cout << "next_start = " << next_start <<
+				" neighbours = " << clique_to_string(next_start_neighbours)
+				<< std::endl;
+			// set relevant bits to prevent them from being reconsidered.
+			start_set.set(next_start);
+			start_set |= next_start_neighbours;
+
+			gcontext.scheduler->add_task(next_start);
+
+			// schedule remaining vertexs
+			int size = std::min(start_set.size(), gcontext.nvertices);
+			for (int i = 0; i < size; i++) {
+				if(!start_set[i]) {
+					gcontext.scheduler->add_task(i);
+				}
+			}
+		}
+		else {
+			// done finding new starts
+			std::cout << "=== all starting vetices found ===" << std::endl;
+		}
+		current_start = next_start;
+	}
+
+	/**
+	 * Called before an execution interval is started.
+	 */
+	void before_exec_interval(vid_t window_st, vid_t window_en,
+		graphchi_context &gcontext) {
+	}
+
+	/**
+	 * Called after an execution interval has finished.
+	 */
+	void after_exec_interval(vid_t window_st, vid_t window_en,
+		graphchi_context &gcontext) {
+	}
+
+};
+
+void convert(std::string in, std::string out) {
+	std::ifstream in_file(in);
+	// TODO check if in file exists
+	std::ofstream out_file(out, std::ofstream::trunc);
+
+	std::string line;
+	int line_num = 0;
+
+	while (std::getline(in_file, line)) {
+		std::istringstream line_stream(line);
+		std::stringstream output_stream;
+
+		out_file << line_num << ' ';
+		++line_num;
+
+		bool c;
+		int c_num = 0;
+		int matches = 0;
+		while (line_stream >> c) {
+			if (c) {
+				++matches;
+				output_stream << ' ' << c_num;
+			}
+			++c_num;
+		}
+
+		// construct line
+		out_file << matches << output_stream.str() << std::endl;
+	}
+
+	in_file.close();
+	out_file.close();
+}
+
+bool clique_compare(const IdSet &a, const IdSet &b) {
+	if (a.count() == b.count()) {
+		for (size_t i = 0; i < a.size(); i++) {
+			if (a[i] && !b[i]) return true;
+			if (!a[i] && b[i]) return false;
+		}
+		return false;
+	}
+	else {
+		return a.count() < b.count();
+	}
+
+}
+
+int main(int argc, const char ** argv) {
+
+	/* GraphChi initialization will read the command line
+       arguments and the configuration file. */
+	graphchi_init(argc, argv);
+
+	/* Metrics object for keeping track of performance counters
+       and other information. Currently required. */
+	metrics m("maximal-clique");
+
+	/* Basic arguments for application */
+	std::string orig_filename = get_option_string("file", "");  // Base filename
+	assert (orig_filename!=""); // ensure a file was given
+	std::string filename;
+
+	std::string output = get_option_string("output", "output");  // results file
+
+
+	int niters = get_option_int("niters", 100); // Number of iterations (max)
+
+	bool scheduler = true;// Use selective scheduling
+	bool convert_input = get_option_int("convert", 1); // whether to convert input file
+	bool sort_output = get_option_int("sort", 1); // whether to sort output
+	singletons = get_option_int("singletons", 0); //  whether we are interested in singletons
+
+	if (convert_input) {
+		filename = orig_filename + "_converted";
+		convert(orig_filename, filename);
+	}
+	else {
+		filename = orig_filename;
+	}
+
+	/* Detect the number of shards or preprocess an input to create them */
+	// TODO only works with adjlist currently
+	int nshards = convert_if_notexists<EdgeDataType>(filename,
+			get_option_string("nshards", "auto"));
+
+	/* Run */
+	MyGraphChiProgram program;
+	graphchi_engine<VertexDataType, EdgeDataType> engine(filename,
+		nshards, scheduler, m);
+	engine.run(program, niters);
+
+	/* Report execution metrics */
+	// metrics_report(m);
+
+	/* record Results */
+	if (sort_output) std::sort(results.begin(), results.end(), clique_compare);
+
+	std::ofstream out_file(output, std::ofstream::trunc);
+	for (std::vector<IdSet>::iterator it = results.begin(); it != results.end(); ++it) {
+		out_file << clique_to_string(*it) << std::endl;
+	}
+	out_file.close();
+	return 0;
+}
